@@ -8,22 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		C813CD261F894ADD00486ABB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C813CD251F894ADD00486ABB /* AppDelegate.swift */; };
-		C813CD281F894ADD00486ABB /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = C813CD271F894ADD00486ABB /* art.scnassets */; };
-		C813CD2A1F894ADD00486ABB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C813CD291F894ADD00486ABB /* ViewController.swift */; };
 		C813CD2D1F894ADD00486ABB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C813CD2B1F894ADD00486ABB /* Main.storyboard */; };
-		C813CD2F1F894ADD00486ABB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C813CD2E1F894ADD00486ABB /* Assets.xcassets */; };
 		C813CD321F894ADD00486ABB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C813CD301F894ADD00486ABB /* LaunchScreen.storyboard */; };
+		C813CD3A1F894B2C00486ABB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C813CD391F894B2C00486ABB /* ViewController.swift */; };
+		C84B72A71F894D6900D96249 /* Assets.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = C84B72A61F894D6900D96249 /* Assets.scnassets */; };
+		C85D1AF01F89624400380CEE /* ChessBoxes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85D1AEF1F89624400380CEE /* ChessBoxes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C813CD221F894ADD00486ABB /* Play Chess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Play Chess.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C813CD251F894ADD00486ABB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C813CD271F894ADD00486ABB /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
-		C813CD291F894ADD00486ABB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C813CD2C1F894ADD00486ABB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		C813CD2E1F894ADD00486ABB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C813CD311F894ADD00486ABB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C813CD331F894ADD00486ABB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C813CD391F894B2C00486ABB /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C84B72A61F894D6900D96249 /* Assets.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Assets.scnassets; sourceTree = "<group>"; };
+		C85D1AEF1F89624400380CEE /* ChessBoxes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChessBoxes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,13 +56,13 @@
 		C813CD241F894ADD00486ABB /* Play Chess */ = {
 			isa = PBXGroup;
 			children = (
+				C84B72A61F894D6900D96249 /* Assets.scnassets */,
 				C813CD251F894ADD00486ABB /* AppDelegate.swift */,
-				C813CD271F894ADD00486ABB /* art.scnassets */,
-				C813CD291F894ADD00486ABB /* ViewController.swift */,
+				C813CD391F894B2C00486ABB /* ViewController.swift */,
 				C813CD2B1F894ADD00486ABB /* Main.storyboard */,
-				C813CD2E1F894ADD00486ABB /* Assets.xcassets */,
 				C813CD301F894ADD00486ABB /* LaunchScreen.storyboard */,
 				C813CD331F894ADD00486ABB /* Info.plist */,
+				C85D1AEF1F89624400380CEE /* ChessBoxes.swift */,
 			);
 			path = "Play Chess";
 			sourceTree = "<group>";
@@ -126,9 +126,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C813CD281F894ADD00486ABB /* art.scnassets in Resources */,
+				C84B72A71F894D6900D96249 /* Assets.scnassets in Resources */,
 				C813CD321F894ADD00486ABB /* LaunchScreen.storyboard in Resources */,
-				C813CD2F1F894ADD00486ABB /* Assets.xcassets in Resources */,
 				C813CD2D1F894ADD00486ABB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -140,8 +139,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C813CD2A1F894ADD00486ABB /* ViewController.swift in Sources */,
+				C813CD3A1F894B2C00486ABB /* ViewController.swift in Sources */,
 				C813CD261F894ADD00486ABB /* AppDelegate.swift in Sources */,
+				C85D1AF01F89624400380CEE /* ChessBoxes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
