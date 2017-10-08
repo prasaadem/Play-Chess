@@ -20,8 +20,10 @@
                         <subviews>
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" sceneName="CameraSetup.scn" wantsMultisampling="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l1C-jx-9LP">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <gestureRecognizers/>
                                 <connections>
                                     <outlet property="delegate" destination="a2a-GO-TXu" id="nr2-l3-Ig1"/>
+                                    <outletCollection property="gestureRecognizers" destination="N0b-EH-HNF" appends="YES" id="Bop-JX-Lme"/>
                                 </connections>
                             </arscnView>
                             <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MfV-Ie-bmi">
@@ -74,6 +76,12 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ArD-IJ-98R" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="N0b-EH-HNF">
+                    <connections>
+                        <action selector="tapScreenWithSender:" destination="a2a-GO-TXu" id="MLU-jl-JG1"/>
+                        <outlet property="delegate" destination="a2a-GO-TXu" id="i6t-hb-FiK"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="132" y="154"/>
         </scene>

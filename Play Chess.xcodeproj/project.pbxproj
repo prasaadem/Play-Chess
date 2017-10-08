@@ -12,6 +12,11 @@
 		C813CD321F894ADD00486ABB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C813CD301F894ADD00486ABB /* LaunchScreen.storyboard */; };
 		C813CD3A1F894B2C00486ABB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C813CD391F894B2C00486ABB /* ViewController.swift */; };
 		C84B72A71F894D6900D96249 /* Assets.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = C84B72A61F894D6900D96249 /* Assets.scnassets */; };
+		C857CAC51F8AB50700493588 /* Piece.swift in Sources */ = {isa = PBXBuildFile; fileRef = C857CAC41F8AB50700493588 /* Piece.swift */; };
+		C857CAC71F8AB6E800493588 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = C857CAC61F8AB6E800493588 /* Board.swift */; };
+		C857CAC91F8AB77900493588 /* Square.swift in Sources */ = {isa = PBXBuildFile; fileRef = C857CAC81F8AB77900493588 /* Square.swift */; };
+		C857CACB1F8AB93B00493588 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = C857CACA1F8AB93B00493588 /* Game.swift */; };
+		C857CACD1F8AB9E400493588 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = C857CACC1F8AB9E400493588 /* Player.swift */; };
 		C85D1AF01F89624400380CEE /* ChessBoxes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85D1AEF1F89624400380CEE /* ChessBoxes.swift */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +28,11 @@
 		C813CD331F894ADD00486ABB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C813CD391F894B2C00486ABB /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C84B72A61F894D6900D96249 /* Assets.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Assets.scnassets; sourceTree = "<group>"; };
+		C857CAC41F8AB50700493588 /* Piece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Piece.swift; sourceTree = "<group>"; };
+		C857CAC61F8AB6E800493588 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
+		C857CAC81F8AB77900493588 /* Square.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Square.swift; sourceTree = "<group>"; };
+		C857CACA1F8AB93B00493588 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		C857CACC1F8AB9E400493588 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		C85D1AEF1F89624400380CEE /* ChessBoxes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChessBoxes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -56,6 +66,7 @@
 		C813CD241F894ADD00486ABB /* Play Chess */ = {
 			isa = PBXGroup;
 			children = (
+				C857CAC31F8AB4EE00493588 /* Classes */,
 				C84B72A61F894D6900D96249 /* Assets.scnassets */,
 				C813CD251F894ADD00486ABB /* AppDelegate.swift */,
 				C813CD391F894B2C00486ABB /* ViewController.swift */,
@@ -65,6 +76,18 @@
 				C85D1AEF1F89624400380CEE /* ChessBoxes.swift */,
 			);
 			path = "Play Chess";
+			sourceTree = "<group>";
+		};
+		C857CAC31F8AB4EE00493588 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				C857CAC41F8AB50700493588 /* Piece.swift */,
+				C857CAC61F8AB6E800493588 /* Board.swift */,
+				C857CAC81F8AB77900493588 /* Square.swift */,
+				C857CACA1F8AB93B00493588 /* Game.swift */,
+				C857CACC1F8AB9E400493588 /* Player.swift */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,7 +162,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C857CAC91F8AB77900493588 /* Square.swift in Sources */,
+				C857CAC51F8AB50700493588 /* Piece.swift in Sources */,
+				C857CACB1F8AB93B00493588 /* Game.swift in Sources */,
 				C813CD3A1F894B2C00486ABB /* ViewController.swift in Sources */,
+				C857CACD1F8AB9E400493588 /* Player.swift in Sources */,
+				C857CAC71F8AB6E800493588 /* Board.swift in Sources */,
 				C813CD261F894ADD00486ABB /* AppDelegate.swift in Sources */,
 				C85D1AF01F89624400380CEE /* ChessBoxes.swift in Sources */,
 			);

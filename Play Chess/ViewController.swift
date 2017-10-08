@@ -111,18 +111,30 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
             if node.geometry is SCNBox{
                 for i in 0...7{
                     if node.name == "box0\(i)" || node.name == "box1\(i)" || node.name == "box6\(i)" || node.name == "box7\(i)" {
-                        let scene2 = SCNScene(named: "Assets.scnassets/pawn.scn")!
-                        let bishopNode = scene2.rootNode.childNodes[0]
-                        bishopNode.position = SCNVector3Make(0, 0, 0)
-                        let material = SCNMaterial()
+                        
                         if node.name == "box0\(i)" || node.name == "box1\(i)"{
-                            material.diffuse.contents = UIColor.black
-                        }else{
+                            let scene2 = SCNScene(named: "Assets.scnassets/chessPieces.scn")!
+                            let bishopNode = scene2.rootNode.childNodes[Int(arc4random_uniform(6))]
+                            bishopNode.position = SCNVector3Make(0, 0, 0)
+                            let material = SCNMaterial()
                             material.diffuse.contents = UIColor.white
+                            bishopNode.geometry?.materials = [material]
+                            bishopNode.scale = SCNVector3Make(0.02, 0.02, 0.02)
+                            bishopNode.name = "pawn"
+                            node.addChildNode(bishopNode)
+                        }else{
+//                            let scene2 = SCNScene(named: "Assets.scnassets/king.scn")!
+//                            let bishopNode = scene2.rootNode.childNodes[1]
+//                            bishopNode.position = SCNVector3Make(0, 0, 0)
+//                            let material = SCNMaterial()
+//                            material.diffuse.contents = UIColor.white
+//                            bishopNode.geometry?.materials = [material]
+//                            bishopNode.scale = SCNVector3Make(0.03, 0.03, 0.03)
+//
+//                            bishopNode.name = "pawn"
+//                            node.addChildNode(bishopNode)
                         }
-                        bishopNode.geometry?.materials = [material]
-                        bishopNode.scale = SCNVector3Make(0.01, 0.01, 0.01)
-                        node.addChildNode(bishopNode)
+                        
                     }
                 }
             }
@@ -136,9 +148,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
         if hitResults.count > 0 {
             let result = hitResults[0]
             let node = result.node
-            if node.name != nil{
-//                planetName = node.name!
-//                showAlert(planetName: planetName)
+            if node.name == "pawn"{
+                let action1 = SCNAction.move(to:SCNVector3Make(0.3,0.3,0.3) , duration: 1)
+                node.runAction(action1)
+                print(node.position)
             }
         }
     }
