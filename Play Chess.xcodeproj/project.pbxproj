@@ -17,6 +17,8 @@
 		C857CAC91F8AB77900493588 /* Square.swift in Sources */ = {isa = PBXBuildFile; fileRef = C857CAC81F8AB77900493588 /* Square.swift */; };
 		C857CACB1F8AB93B00493588 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = C857CACA1F8AB93B00493588 /* Game.swift */; };
 		C857CACD1F8AB9E400493588 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = C857CACC1F8AB9E400493588 /* Player.swift */; };
+		C857CACF1F8AD05100493588 /* setSquares.plist in Resources */ = {isa = PBXBuildFile; fileRef = C857CACE1F8AD05100493588 /* setSquares.plist */; };
+		C857CAD11F8B341300493588 /* movements.plist in Resources */ = {isa = PBXBuildFile; fileRef = C857CAD01F8B341300493588 /* movements.plist */; };
 		C85D1AF01F89624400380CEE /* ChessBoxes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85D1AEF1F89624400380CEE /* ChessBoxes.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +35,8 @@
 		C857CAC81F8AB77900493588 /* Square.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Square.swift; sourceTree = "<group>"; };
 		C857CACA1F8AB93B00493588 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		C857CACC1F8AB9E400493588 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		C857CACE1F8AD05100493588 /* setSquares.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = setSquares.plist; sourceTree = "<group>"; };
+		C857CAD01F8B341300493588 /* movements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = movements.plist; sourceTree = "<group>"; };
 		C85D1AEF1F89624400380CEE /* ChessBoxes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChessBoxes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -74,6 +78,8 @@
 				C813CD301F894ADD00486ABB /* LaunchScreen.storyboard */,
 				C813CD331F894ADD00486ABB /* Info.plist */,
 				C85D1AEF1F89624400380CEE /* ChessBoxes.swift */,
+				C857CACE1F8AD05100493588 /* setSquares.plist */,
+				C857CAD01F8B341300493588 /* movements.plist */,
 			);
 			path = "Play Chess";
 			sourceTree = "<group>";
@@ -149,8 +155,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C857CAD11F8B341300493588 /* movements.plist in Resources */,
 				C84B72A71F894D6900D96249 /* Assets.scnassets in Resources */,
 				C813CD321F894ADD00486ABB /* LaunchScreen.storyboard in Resources */,
+				C857CACF1F8AD05100493588 /* setSquares.plist in Resources */,
 				C813CD2D1F894ADD00486ABB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

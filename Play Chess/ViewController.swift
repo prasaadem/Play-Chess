@@ -4,9 +4,13 @@ import ARKit
 
 class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
     @IBOutlet weak var sessionInfoView: UIView!
-	@IBOutlet weak var sessionInfoLabel: UILabel!
-	@IBOutlet weak var sceneView: ARSCNView!
-
+    @IBOutlet weak var sessionInfoLabel: UILabel!
+    @IBOutlet weak var sceneView: ARSCNView!
+    
+    var game = Game()
+    var isPieceSelected:Bool = false
+    var movement:Dictionary = [String:Any]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -19,67 +23,61 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
         sceneView.session.delegate = self
         UIApplication.shared.isIdleTimerDisabled = true
     }
-	
-	override func viewWillDisappear(_ animated: Bool) {
-		super.viewWillDisappear(animated)
-		
-		// Pause the view's AR session.
-		sceneView.session.pause()
-	}
-	
-	// MARK: - ARSCNViewDelegate
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // Pause the view's AR session.
+        sceneView.session.pause()
+    }
+    
+    // MARK: - ARSCNViewDelegate
     
     /// - Tag: PlaceARContent
-	func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         guard let planeAnchor = anchor as? ARPlaneAnchor else {return }
-        
-        let scene = SCNScene(named: "Assets.scnassets/chessBoard.scn")!
-        let planeNode = scene.rootNode.childNodes[0]
-        planeNode.simdPosition = float3(planeAnchor.center.x, 0, planeAnchor.center.z)
-        planeNode.eulerAngles.x = -.pi / 2
-        planeNode.opacity = 1.0
-        
-        let material = SCNMaterial()
-        material.diffuse.contents = UIColor.clear
-        planeNode.geometry?.materials = [material]
-        addObject(planeNode: planeNode)
-        node.addChildNode(planeNode)
-	}
-
+        if node.childNodes.count == 0 {
+            game = Game()
+            let boardNode = game.board.designBoard(planeAnchor: planeAnchor)
+            node.addChildNode(boardNode)
+            game.addPieces()
+        }
+    }
+    
     // MARK: - ARSessionDelegate
-
+    
     func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
         guard let frame = session.currentFrame else { return }
         updateSessionInfoLabel(for: frame, trackingState: frame.camera.trackingState)
     }
-
+    
     func session(_ session: ARSession, didRemove anchors: [ARAnchor]) {
         guard let frame = session.currentFrame else { return }
         updateSessionInfoLabel(for: frame, trackingState: frame.camera.trackingState)
     }
-
+    
     func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {
         updateSessionInfoLabel(for: session.currentFrame!, trackingState: camera.trackingState)
     }
-
+    
     // MARK: - ARSessionObserver
-	
-	func sessionWasInterrupted(_ session: ARSession) {
-		sessionInfoLabel.text = "Session was interrupted"
-	}
-	
-	func sessionInterruptionEnded(_ session: ARSession) {
-		sessionInfoLabel.text = "Session interruption ended"
-		resetTracking()
-	}
+    
+    func sessionWasInterrupted(_ session: ARSession) {
+        sessionInfoLabel.text = "Session was interrupted"
+    }
+    
+    func sessionInterruptionEnded(_ session: ARSession) {
+        sessionInfoLabel.text = "Session interruption ended"
+        resetTracking()
+    }
     
     func session(_ session: ARSession, didFailWithError error: Error) {
         sessionInfoLabel.text = "Session failed: \(error.localizedDescription)"
         resetTracking()
     }
-
+    
     // MARK: - Private methods
-
+    
     private func updateSessionInfoLabel(for frame: ARFrame, trackingState: ARCamera.TrackingState) {
         let message: String
         switch trackingState {
@@ -99,46 +97,11 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
         sessionInfoLabel.text = message
         sessionInfoView.isHidden = message.isEmpty
     }
-
+    
     private func resetTracking() {
         let configuration = ARWorldTrackingConfiguration()
         configuration.planeDetection = .horizontal
         sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
-    }
-    
-    func addObject(planeNode:SCNNode){
-        planeNode.enumerateChildNodes { (node, stop) in
-            if node.geometry is SCNBox{
-                for i in 0...7{
-                    if node.name == "box0\(i)" || node.name == "box1\(i)" || node.name == "box6\(i)" || node.name == "box7\(i)" {
-                        
-                        if node.name == "box0\(i)" || node.name == "box1\(i)"{
-                            let scene2 = SCNScene(named: "Assets.scnassets/chessPieces.scn")!
-                            let bishopNode = scene2.rootNode.childNodes[Int(arc4random_uniform(6))]
-                            bishopNode.position = SCNVector3Make(0, 0, 0)
-                            let material = SCNMaterial()
-                            material.diffuse.contents = UIColor.white
-                            bishopNode.geometry?.materials = [material]
-                            bishopNode.scale = SCNVector3Make(0.02, 0.02, 0.02)
-                            bishopNode.name = "pawn"
-                            node.addChildNode(bishopNode)
-                        }else{
-//                            let scene2 = SCNScene(named: "Assets.scnassets/king.scn")!
-//                            let bishopNode = scene2.rootNode.childNodes[1]
-//                            bishopNode.position = SCNVector3Make(0, 0, 0)
-//                            let material = SCNMaterial()
-//                            material.diffuse.contents = UIColor.white
-//                            bishopNode.geometry?.materials = [material]
-//                            bishopNode.scale = SCNVector3Make(0.03, 0.03, 0.03)
-//
-//                            bishopNode.name = "pawn"
-//                            node.addChildNode(bishopNode)
-                        }
-                        
-                    }
-                }
-            }
-        }
     }
     
     @IBAction func tapScreen(sender: UITapGestureRecognizer) {
@@ -148,11 +111,38 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
         if hitResults.count > 0 {
             let result = hitResults[0]
             let node = result.node
-            if node.name == "pawn"{
-                let action1 = SCNAction.move(to:SCNVector3Make(0.3,0.3,0.3) , duration: 1)
-                node.runAction(action1)
-                print(node.position)
+            
+            if node.geometry is SCNBox || node.geometry is SCNPlane{
+                if node.geometry is SCNBox && isPieceSelected{
+                    movement["new"] = node.position
+                    let piece = game.board.childNode(withName: movement["name"] as! String, recursively: true)
+                    let action1 = SCNAction.move(to:node.position , duration: 0.1)
+                    piece?.runAction(action1, completionHandler: {
+                        self.game.board.movements.append(self.movement)
+                        self.isPieceSelected = false
+                    })
+                }
+            }else{
+                movement["name"] = node.name
+                movement["old"] = node.position
+                isPieceSelected = true
             }
         }
+    }
+    @IBAction func redoMoves(_ sender: Any) {
+        if game.board.movements.count != 0 {
+            let movement = game.board.movements.last
+            let node = game.board.childNode(withName: movement!["name"] as! String, recursively: true)
+            
+            let action1 = SCNAction.move(to:movement!["old"] as! SCNVector3 , duration: 0.1)
+            node?.runAction(action1, completionHandler: {
+                self.game.board.movements.removeLast()
+                print(self.game.board.movements)
+            })
+        }
+    }
+    
+    func saveMovements(movement:Dictionary<String,String>){
+        
     }
 }

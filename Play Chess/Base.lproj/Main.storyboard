@@ -57,15 +57,29 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </visualEffectView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IBo-o2-hZR">
+                                <rect key="frame" x="323" y="623" width="44" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="7je-uk-McD"/>
+                                    <constraint firstAttribute="height" constant="36" id="c39-2D-Bxm"/>
+                                </constraints>
+                                <state key="normal" title="Redo"/>
+                                <connections>
+                                    <action selector="redoMoves:" destination="a2a-GO-TXu" eventType="touchUpInside" id="rE4-qz-MQL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="l1C-jx-9LP" firstAttribute="leading" secondItem="k4O-0t-oqi" secondAttribute="leading" id="1rB-x1-hvJ"/>
                             <constraint firstAttribute="top" secondItem="l1C-jx-9LP" secondAttribute="top" id="4Cv-9N-BGV"/>
+                            <constraint firstItem="k4O-0t-oqi" firstAttribute="trailing" secondItem="IBo-o2-hZR" secondAttribute="trailing" constant="8" id="Ctc-Oy-Wky"/>
+                            <constraint firstItem="k4O-0t-oqi" firstAttribute="bottom" secondItem="IBo-o2-hZR" secondAttribute="bottom" constant="8" id="T1G-fb-pyW"/>
                             <constraint firstItem="MfV-Ie-bmi" firstAttribute="leading" secondItem="k4O-0t-oqi" secondAttribute="leading" constant="15" id="Uha-hO-f9N"/>
                             <constraint firstAttribute="bottom" secondItem="l1C-jx-9LP" secondAttribute="bottom" id="Y35-eA-iJp"/>
                             <constraint firstItem="k4O-0t-oqi" firstAttribute="trailing" secondItem="l1C-jx-9LP" secondAttribute="trailing" id="bM6-S6-1ln"/>
                             <constraint firstItem="k4O-0t-oqi" firstAttribute="bottom" secondItem="MfV-Ie-bmi" secondAttribute="bottom" constant="33" id="gcS-lB-t0E"/>
+                            <constraint firstItem="IBo-o2-hZR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="82q-n8-0Mb" secondAttribute="leading" constant="20" symbolic="YES" id="m7t-7t-YX7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="k4O-0t-oqi"/>
                     </view>
