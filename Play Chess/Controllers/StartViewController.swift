@@ -25,11 +25,11 @@ class StartViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        let destinationVC = segue.destination as! ViewController
-        
         if segue.identifier == "singlePlayer"{
+            let destinationVC = segue.destination as! ViewController
             destinationVC.isAgainstAI = true
         }else if segue.identifier == "multiPlayer"{
+            let destinationVC = segue.destination as! ViewController
             destinationVC.isAgainstAI = false
         }
     }

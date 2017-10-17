@@ -32,14 +32,14 @@
                                 <color key="textColor" red="0.50196081400000003" green="0.25098040700000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="hao-AV-oxj">
-                                <rect key="frame" x="20" y="253.5" width="335" height="180"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="hao-AV-oxj">
+                                <rect key="frame" x="20" y="283.5" width="335" height="120"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mqw-fW-MTV">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="48"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
                                         <color key="backgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                        <state key="normal" title="Single Player">
+                                        <state key="normal" title="Single Player AR">
                                             <color key="titleColor" red="0.50196081400000003" green="0.25098040700000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -48,10 +48,10 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z7h-At-AHk">
-                                        <rect key="frame" x="0.0" y="68" width="335" height="48"/>
+                                        <rect key="frame" x="0.0" y="70" width="335" height="50"/>
                                         <color key="backgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                        <state key="normal" title="Multi Player">
+                                        <state key="normal" title="Multi Player AR">
                                             <color key="titleColor" red="0.50196081400000003" green="0.25098040700000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -59,17 +59,9 @@
                                             <segue destination="a2a-GO-TXu" kind="show" identifier="multiPlayer" id="GyC-iJ-9rL"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sfw-SH-PZe">
-                                        <rect key="frame" x="0.0" y="136" width="335" height="44"/>
-                                        <color key="backgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                        <state key="normal" title="Multi Player AR">
-                                            <color key="titleColor" red="0.50196081400000003" green="0.25098040700000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                    </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="180" id="2zR-LA-WEP"/>
+                                    <constraint firstAttribute="height" constant="120" id="2zR-LA-WEP"/>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -167,37 +159,8 @@
             </objects>
             <point key="canvasLocation" x="132" y="154"/>
         </scene>
-        <!--Scene View Controller-->
-        <scene sceneID="rYx-zV-lAs">
-            <objects>
-                <viewController id="G7W-em-FmD" customClass="SceneViewController" customModule="Play_Chess" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Mdh-8O-sCC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QUh-Oh-UWY">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                            </sceneKitView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="PcT-7r-GBc" firstAttribute="bottom" secondItem="QUh-Oh-UWY" secondAttribute="bottom" id="Upb-AF-Y3a"/>
-                            <constraint firstItem="QUh-Oh-UWY" firstAttribute="trailing" secondItem="PcT-7r-GBc" secondAttribute="trailing" id="c6i-es-KFV"/>
-                            <constraint firstItem="QUh-Oh-UWY" firstAttribute="leading" secondItem="PcT-7r-GBc" secondAttribute="leading" id="dVR-Gz-6au"/>
-                            <constraint firstItem="QUh-Oh-UWY" firstAttribute="top" secondItem="Mdh-8O-sCC" secondAttribute="top" id="wau-AK-ze2"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="PcT-7r-GBc"/>
-                    </view>
-                    <connections>
-                        <outlet property="sceneView" destination="QUh-Oh-UWY" id="PKn-2Q-upw"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Mlj-Yv-zTb" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="816.79999999999995" y="151.57421289355324"/>
-        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="GyC-iJ-9rL"/>
+        <segue reference="VRE-9b-uoG"/>
     </inferredMetricsTieBreakers>
 </document>
