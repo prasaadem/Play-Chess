@@ -110,7 +110,6 @@ class Piece: SCNNode {
     }
     
     func doesKingMoveSeemFine(fromIndex source:BoardIndex, toIndex destination:BoardIndex) -> Bool {
-        print("king")
         let differenceInRows = abs(destination.row - source.row)
         let differenceInCols = abs(destination.col - source.col)
         
@@ -123,7 +122,6 @@ class Piece: SCNNode {
     }
     
     func doesQueenMoveSeemFine(fromIndex source:BoardIndex, toIndex destination:BoardIndex) -> Bool {
-        print("Queen")
         if source.row == destination.row || source.col == destination.col{
             return true
         }
@@ -134,7 +132,6 @@ class Piece: SCNNode {
     }
     
     func doesBishopMoveSeemFine(fromIndex source:BoardIndex, toIndex destination:BoardIndex) -> Bool {
-        print("bishop")
         if abs(destination.row - source.row) == abs(destination.col - source.col){
             return true
         }
@@ -142,7 +139,6 @@ class Piece: SCNNode {
     }
     
     func doesKnightMoveSeemFine(fromIndex source:BoardIndex, toIndex destination:BoardIndex) -> Bool {
-        print("knight")
         let validMoves = [(source.row - 1, source.col + 2), (source.row - 2, source.col + 1), (source.row - 2, source.col - 1), (source.row - 1, source.col - 2), (source.row + 1, source.col - 2), (source.row + 2, source.col - 1), (source.row + 2, source.col + 1), (source.row + 1, source.col + 2)]
         
         for (validRow, validCol) in validMoves{
@@ -155,7 +151,6 @@ class Piece: SCNNode {
     }
     
     func doesRookMoveSeemFine(fromIndex source:BoardIndex, toIndex destination:BoardIndex) -> Bool {
-        print("rook")
         if source.row == destination.row || source.col == destination.col{
             return true
         }
@@ -163,11 +158,9 @@ class Piece: SCNNode {
     }
     
     func doesPawnMoveSeemFine(fromIndex source:BoardIndex, toIndex destination:BoardIndex) -> Bool {
-        print("pawn")
-        
         //check advance by 2
         if source.col == destination.col{
-            if (source.row == 1 && destination.row == 3 && self.isWhite == false) || (source.row == 6 && destination.row == 4 && self.isWhite != false){
+            if (source.row == 1 && destination.row == 3 && self.isWhite == true) || (source.row == 6 && destination.row == 4 && self.isWhite == false){
                 pawnTriesToAdvanceBy2 = true
                 return true
             }
@@ -179,10 +172,10 @@ class Piece: SCNNode {
         var moveForward = 0
         
         if self.isWhite{
-            moveForward = -1
+            moveForward = 1
         }
         else{
-            moveForward = 1
+            moveForward = -1
         }
         
         if destination.row == source.row + moveForward{

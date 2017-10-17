@@ -12,6 +12,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
     var isPieceSelected:Bool = false
     var movement:Dictionary = [String:Any]()
     var sourceNode:Piece!
+    var isAgainstAI:Bool!
+    var boardNode:SCNNode!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +43,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
         if node.childNodes.count == 0 {
             chessPieces = []
             game = Game(viewController: self)
-            let boardNode = game.board.designBoard(planeAnchor: planeAnchor)
+            boardNode = game.board.designBoard(planeAnchor: planeAnchor)
             node.addChildNode(boardNode)
         }
     }
@@ -120,7 +122,16 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
                     
                     if game.isMoveValid(piece: sourceNode, fromIndex: sourceNode!.index, toIndex: (squareNode?.index)!){
                         game.move(piece: sourceNode, sourceIndex: sourceNode.index, destIndex: (squareNode?.index)!)
-                        game.playerTurn()
+                        if game.isGameOver(){
+                            displayWinner()
+                            return
+                        }
+                        
+                        if shouldPromotePawn(){
+                            promptForPawnPromotion()
+                        }else{
+                            resumeGame()
+                        }
                     }
                 }
             }
@@ -146,7 +157,115 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
 //        }
 //    }
     
-    func saveMovements(movement:Dictionary<String,String>){
+    func displayWinner(){
+        let box = UIAlertController(title: "Game Over", message: "\(game.winner!) wins", preferredStyle: UIAlertControllerStyle.alert)
+        
+        box.addAction(UIAlertAction(title: "Back to main menu", style: UIAlertActionStyle.default, handler: {
+            action in self.performSegue(withIdentifier: "backToMainMenu", sender: self)
+        }))
+        
+        box.addAction(UIAlertAction(title: "Rematch", style: UIAlertActionStyle.default, handler: {
+            action in
+            
+            for chessPiece in self.chessPieces{
+                self.game.board.remove(piece: chessPiece)
+            }
+            
+            //create new game
+            self.game.board.addPieces()
+            self.game.winner = ""
+        }))
+        
+        self.present(box, animated: true, completion: nil)
+    }
+    
+    func displayCheck(){
+        let checkString = game.getPlayerChecked()
+        if checkString != nil {
+            print(checkString! + "is in check")
+        }
+    }
+    
+    func shouldPromotePawn() -> Bool{
+        return (game.getPawnToBePromoted() != nil)
+    }
+    
+    func promote(pawn pawnToBePromoted: Piece, into pieceName: String){
+        
+        game.board.remove(piece: pawnToBePromoted)
+        
+        switch pieceName {
+        case "Queen":
+            game.board.board[pawnToBePromoted.index.row][pawnToBePromoted.index.col] = Piece.init(isWhite: pawnToBePromoted.isWhite, type: .queen, board: game.board, index: pawnToBePromoted.index, name: "queen")
+        case "Bishop":
+            game.board.board[pawnToBePromoted.index.row][pawnToBePromoted.index.col] = Piece.init(isWhite: pawnToBePromoted.isWhite, type: .bishop, board: game.board, index: pawnToBePromoted.index, name: "bishop")
+        case "Knight":
+            game.board.board[pawnToBePromoted.index.row][pawnToBePromoted.index.col] = Piece.init(isWhite: pawnToBePromoted.isWhite, type: .knight, board: game.board, index: pawnToBePromoted.index, name: "knight")
+        case "Rook":
+            game.board.board[pawnToBePromoted.index.row][pawnToBePromoted.index.col] = Piece.init(isWhite: pawnToBePromoted.isWhite, type: .rook, board: game.board, index: pawnToBePromoted.index, name: "rook")
+        default:
+            break
+        }
+    }
+    
+    func promptForPawnPromotion(){
+        if let pawnToPromote = game.getPawnToBePromoted(){
+            
+            let box = UIAlertController(title: "Pawn promotion", message: "Choose piece", preferredStyle: UIAlertControllerStyle.alert)
+            
+            box.addAction(UIAlertAction(title: "Queen", style: UIAlertActionStyle.default, handler: {
+                action in
+                self.promote(pawn: pawnToPromote, into: action.title!)
+                self.resumeGame()
+            }))
+            
+            box.addAction(UIAlertAction(title: "Bishop", style: UIAlertActionStyle.default, handler: {
+                action in
+                self.promote(pawn: pawnToPromote, into: action.title!)
+                self.resumeGame()
+            }))
+            
+            box.addAction(UIAlertAction(title: "Knight", style: UIAlertActionStyle.default, handler: {
+                action in
+                self.promote(pawn: pawnToPromote, into: action.title!)
+                self.resumeGame()
+            }))
+            
+            box.addAction(UIAlertAction(title: "Rook", style: UIAlertActionStyle.default, handler: {
+                action in
+                self.promote(pawn: pawnToPromote, into: action.title!)
+                self.resumeGame()
+            }))
+            
+            self.present(box, animated: true, completion: nil)
+        }
+    }
+    
+    func resumeGame(){
+        displayCheck()
+        game.playerTurn()
+        
+        print(isAgainstAI)
+        print(game.turnIsWhite)
+        if isAgainstAI && !game.turnIsWhite {
+            game.makeAIMove()
+            
+            if game.isGameOver(){
+                displayWinner()
+                return
+            }
+            
+            if shouldPromotePawn(){
+                promote(pawn: game.getPawnToBePromoted()!, into: "Queen")
+            }
+            
+            displayCheck()
+            game.playerTurn()
+        }
+        updateTurnOnScreen()
+    }
+    
+    func updateTurnOnScreen(){
         
     }
 }

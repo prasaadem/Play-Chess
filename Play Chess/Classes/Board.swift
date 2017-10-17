@@ -73,48 +73,48 @@ class Board: SCNNode {
                 case 0:
                     switch col {
                     case 0:
-                        board[row][col] = Piece(isWhite: false, type: .rook, board: self, index:boardIndex ,name:"rook\(row)\(col)")
+                        board[row][col] = Piece(isWhite: true, type: .rook, board: self, index:boardIndex ,name:"rook\(row)\(col)")
                     case 1:
-                        board[row][col] = Piece(isWhite: false, type: .knight, board: self, index:boardIndex ,name:"rook\(row)\(col)")
+                        board[row][col] = Piece(isWhite: true, type: .knight, board: self, index:boardIndex ,name:"knight\(row)\(col)")
                     case 2:
-                        board[row][col] = Piece(isWhite: false, type: .bishop, board: self, index:boardIndex ,name:"rook\(row)\(col)")
+                        board[row][col] = Piece(isWhite: true, type: .bishop, board: self, index:boardIndex ,name:"bishop\(row)\(col)")
                     case 3:
-                        board[row][col] = Piece(isWhite: false, type: .queen, board: self, index:boardIndex ,name:"rook\(row)\(col)")
+                        board[row][col] = Piece(isWhite: true, type: .queen, board: self, index:boardIndex ,name:"queen\(row)\(col)")
                     case 4:
-                        blackKing = Piece(isWhite: false, type: .king, board: self, index:boardIndex ,name:"rook\(row)\(col)")
+                        blackKing = Piece(isWhite: true, type: .king, board: self, index:boardIndex ,name:"king\(row)\(col)")
                         board[row][col] = blackKing
                     case 5:
-                        board[row][col] = Piece(isWhite: false, type: .bishop, board: self, index:boardIndex,name:"rook\(row)\(col)")
+                        board[row][col] = Piece(isWhite: true, type: .bishop, board: self, index:boardIndex,name:"bishop\(row)\(col)")
                     case 6:
-                        board[row][col] = Piece(isWhite: false, type: .knight, board: self, index:boardIndex,name:"rook\(row)\(col)")
+                        board[row][col] = Piece(isWhite: true, type: .knight, board: self, index:boardIndex,name:"knight\(row)\(col)")
                     case 7:
-                        board[row][col] = Piece(isWhite: false, type: .rook, board: self, index:boardIndex,name:"rook\(row)\(col)")
+                        board[row][col] = Piece(isWhite: true, type: .rook, board: self, index:boardIndex,name:"rook\(row)\(col)")
                     default:
                         print("default")
                     }
                 case 1:
-                    board[row][col] = Piece(isWhite: false, type: .pawn, board: self, index:boardIndex,name:"rook\(row)\(col)")
+                    board[row][col] = Piece(isWhite: true, type: .pawn, board: self, index:boardIndex,name:"pawn\(row)\(col)")
                 case 6:
-                    board[row][col] = Piece(isWhite: true, type: .pawn, board: self, index:boardIndex,name:"rook\(row)\(col)")
+                    board[row][col] = Piece(isWhite: false, type: .pawn, board: self, index:boardIndex,name:"pawn\(row)\(col)")
                 case 7:
                     switch col {
                     case 0:
-                        board[row][col] = Piece(isWhite: true, type: .rook, board: self, index:boardIndex,name:"rook\(row)\(col)")
+                        board[row][col] = Piece(isWhite: false, type: .rook, board: self, index:boardIndex,name:"rook\(row)\(col)")
                     case 1:
-                        board[row][col] = Piece(isWhite: true, type: .knight, board: self, index:boardIndex,name:"rook\(row)\(col)")
+                        board[row][col] = Piece(isWhite: false, type: .knight, board: self, index:boardIndex,name:"knight\(row)\(col)")
                     case 2:
-                        board[row][col] = Piece(isWhite: true, type: .bishop, board: self, index:boardIndex,name:"rook\(row)\(col)")
+                        board[row][col] = Piece(isWhite: false, type: .bishop, board: self, index:boardIndex,name:"bishop\(row)\(col)")
                     case 3:
-                        board[row][col] = Piece(isWhite: true, type: .queen, board: self, index:boardIndex,name:"rook\(row)\(col)")
+                        board[row][col] = Piece(isWhite: false, type: .queen, board: self, index:boardIndex,name:"queen\(row)\(col)")
                     case 4:
-                        whiteKing = Piece(isWhite: true, type: .king, board: self, index:boardIndex,name:"rook\(row)\(col)")
+                        whiteKing = Piece(isWhite: false, type: .king, board: self, index:boardIndex,name:"king\(row)\(col)")
                         board[row][col] = whiteKing
                     case 5:
-                        board[row][col] = Piece(isWhite: true, type: .bishop, board: self, index:boardIndex,name:"rook\(row)\(col)")
+                        board[row][col] = Piece(isWhite: false, type: .bishop, board: self, index:boardIndex,name:"bishop\(row)\(col)")
                     case 6:
-                        board[row][col] = Piece(isWhite: true, type: .knight, board: self, index:boardIndex,name:"rook\(row)\(col)")
+                        board[row][col] = Piece(isWhite: false, type: .knight, board: self, index:boardIndex,name:"knight\(row)\(col)")
                     case 7:
-                        board[row][col] = Piece(isWhite: true, type: .rook, board: self, index:boardIndex,name:"rook\(row)\(col)")
+                        board[row][col] = Piece(isWhite: false, type: .rook, board: self, index:boardIndex,name:"rook\(row)\(col)")
                     default:
                         print("default")
                     }
@@ -122,6 +122,7 @@ class Board: SCNNode {
                 default:
                     board[row][col] = Piece(index: boardIndex, board: self)
                 }
+                self.vc.chessPieces.append(board[row][col])
             }
         }
     }
@@ -130,12 +131,12 @@ class Board: SCNNode {
         let boardIndex = "\(destIndex.row)\(destIndex.col)"
         let destPosition = squarePosition[boardIndex]!
         let action1 = SCNAction.move(to:destPosition , duration: 0.1)
-        chessPiece.runAction(action1, completionHandler: {
-            self.movements.append(self.vc.movement)
-            self.vc.isPieceSelected = false
-            chessPiece.index = destIndex
-            self.board[destIndex.row][destIndex.col] = chessPiece
-        })
+        
+        self.movements.append(self.vc.movement)
+        self.vc.isPieceSelected = false
+        chessPiece.index = destIndex
+        self.board[destIndex.row][destIndex.col] = chessPiece
+        chessPiece.runAction(action1, completionHandler: nil)
     }
     
     func remove(piece:SCNNode){
