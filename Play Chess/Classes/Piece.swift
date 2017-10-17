@@ -16,16 +16,24 @@ enum type {
     case rook
     case knight
     case pawn
+    case dot
 }
 
-class Piece: NSObject {
+//typealias UIChessPiece = SCNNode
+
+class Piece: SCNNode {
     
-    var isWhite:Bool!
+    var isWhite:Bool = true
     var board:Board!
-    var node:SCNNode = SCNNode()
     var player:Player!
+    var isSelected:Bool = false
+    var index:BoardIndex!
+    var type:type!
     
-    init(isWhite:Bool,type:type,board:Board,node:String,name:String) {
+    //pawn
+    var pawnTriesToAdvanceBy2: Bool = false
+    
+    init(isWhite:Bool,type:type,board:Board,index:BoardIndex,name:String) {
         super.init()
         self.isWhite = isWhite
         self.board = board
@@ -35,21 +43,28 @@ class Piece: NSObject {
         
         switch type {
         case .king:
-            self.node = scene.rootNode.childNodes[0]
+            self.geometry = scene.rootNode.childNodes[0].geometry
         case .queen:
-            self.node = scene.rootNode.childNodes[1]
+            self.geometry = scene.rootNode.childNodes[1].geometry
         case .bishop:
-            self.node = scene.rootNode.childNodes[2]
+            self.geometry = scene.rootNode.childNodes[2].geometry
         case .rook:
-            self.node = scene.rootNode.childNodes[3]
+            self.geometry = scene.rootNode.childNodes[3].geometry
         case .knight:
-            self.node = scene.rootNode.childNodes[4]
+            self.geometry = scene.rootNode.childNodes[4].geometry
         case .pawn:
-            self.node = scene.rootNode.childNodes[5]
+            self.geometry = scene.rootNode.childNodes[5].geometry
+        case .dot:
+            print("dot")
         }
         
-        self.node.position = squarePosition[node]!
-        self.node.name = name
+        self.index = index
+        let boardIndex = "\(index.row)\(index.col)"
+        self.position = squarePosition[boardIndex]!
+        self.name = name
+        self.type = type
+        
+//        self.index = BoardIndex(row: (node[0] as Int), col: (node[1] as Int))
         
         let material = SCNMaterial()
         if self.isWhite{
@@ -57,32 +72,125 @@ class Piece: NSObject {
         }else{
             material.diffuse.contents = UIColor(red:0.21, green:0.2, blue:0.2, alpha:1.0)
         }
-        self.node.geometry?.materials = [material]
-        self.node.scale = SCNVector3Make(0.02, 0.02, 0.02)
+        self.geometry?.materials = [material]
+        self.scale = SCNVector3Make(0.02, 0.02, 0.02)
         
-        self.board.addChildNode(self.node)
+        self.board.addChildNode(self)
         self.player.availablePieces.append(self)
+    }
+    
+    init(index:BoardIndex,board:Board) {
+        super.init()
+        
+        self.board = board
+        self.player = Player(isWhite: self.isWhite)
+        
+        let sphere = SCNSphere(radius: 0.1)
+        self.geometry = sphere
+        let boardIndex = "\(index.row)\(index.col)"
+        self.position = squarePosition[boardIndex]!
+        self.index = index
+        self.type = .dot
+        
+        let material = SCNMaterial()
+        material.diffuse.contents = UIColor(red:0.89, green:0.85, blue:0.79, alpha:1.0)
+        self.geometry?.materials = [material]
+        self.scale = SCNVector3Make(0.02, 0.02, 0.02)
+        
+        self.board.addChildNode(self)
+    }
+    
+    override init() {
+        super.init()
     }
     
     required init?(coder aDecoder: NSCoder) {
         
         fatalError("init(coder:) has not been implemented")
     }
-//    
-//    func name() -> String {
-//        preconditionFailure("This method must be overridden")
-//    }
-//    
-//    func canMove(end:(Int, Int), endPiece:Piece? = nil, registeredMove:Bool = true) -> Bool {
-//        preconditionFailure("This method must be overridden")
-//    }
-//    
-//    func didMove() {
-//        preconditionFailure("This method must be overridden")
-//    }
-//    
-//    //Used during checkmate detection
-//    func getMovementPath(_ end:(Int, Int)) -> [Square]? {
-//        preconditionFailure("This method must be overridden")
-//    }
+    
+    func doesKingMoveSeemFine(fromIndex source:BoardIndex, toIndex destination:BoardIndex) -> Bool {
+        print("king")
+        let differenceInRows = abs(destination.row - source.row)
+        let differenceInCols = abs(destination.col - source.col)
+        
+        if case 0...1 = differenceInRows{
+            if case 0...1 = differenceInCols{
+                return true
+            }
+        }
+        return false
+    }
+    
+    func doesQueenMoveSeemFine(fromIndex source:BoardIndex, toIndex destination:BoardIndex) -> Bool {
+        print("Queen")
+        if source.row == destination.row || source.col == destination.col{
+            return true
+        }
+        if abs(destination.row - source.row) == abs(destination.col - source.col){
+            return true
+        }
+        return false
+    }
+    
+    func doesBishopMoveSeemFine(fromIndex source:BoardIndex, toIndex destination:BoardIndex) -> Bool {
+        print("bishop")
+        if abs(destination.row - source.row) == abs(destination.col - source.col){
+            return true
+        }
+        return false
+    }
+    
+    func doesKnightMoveSeemFine(fromIndex source:BoardIndex, toIndex destination:BoardIndex) -> Bool {
+        print("knight")
+        let validMoves = [(source.row - 1, source.col + 2), (source.row - 2, source.col + 1), (source.row - 2, source.col - 1), (source.row - 1, source.col - 2), (source.row + 1, source.col - 2), (source.row + 2, source.col - 1), (source.row + 2, source.col + 1), (source.row + 1, source.col + 2)]
+        
+        for (validRow, validCol) in validMoves{
+            if destination.row == validRow && destination.col == validCol{
+                return true
+            }
+        }
+        
+        return false
+    }
+    
+    func doesRookMoveSeemFine(fromIndex source:BoardIndex, toIndex destination:BoardIndex) -> Bool {
+        print("rook")
+        if source.row == destination.row || source.col == destination.col{
+            return true
+        }
+        return false
+    }
+    
+    func doesPawnMoveSeemFine(fromIndex source:BoardIndex, toIndex destination:BoardIndex) -> Bool {
+        print("pawn")
+        
+        //check advance by 2
+        if source.col == destination.col{
+            if (source.row == 1 && destination.row == 3 && self.isWhite == false) || (source.row == 6 && destination.row == 4 && self.isWhite != false){
+                pawnTriesToAdvanceBy2 = true
+                return true
+            }
+        }
+        
+        pawnTriesToAdvanceBy2 = false
+        
+        //check advance by 1
+        var moveForward = 0
+        
+        if self.isWhite{
+            moveForward = -1
+        }
+        else{
+            moveForward = 1
+        }
+        
+        if destination.row == source.row + moveForward{
+            if (destination.col == source.col - 1) || (destination.col == source.col) || (destination.col == source.col + 1){
+                return true
+            }
+        }
+        
+        return false
+    }
 }

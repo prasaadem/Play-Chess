@@ -7,9 +7,11 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
     @IBOutlet weak var sessionInfoLabel: UILabel!
     @IBOutlet weak var sceneView: ARSCNView!
     
-    var game = Game()
+    var game:Game!
+    var chessPieces:[Piece]!
     var isPieceSelected:Bool = false
     var movement:Dictionary = [String:Any]()
+    var sourceNode:Piece!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,10 +39,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         guard let planeAnchor = anchor as? ARPlaneAnchor else {return }
         if node.childNodes.count == 0 {
-            game = Game()
+            chessPieces = []
+            game = Game(viewController: self)
             let boardNode = game.board.designBoard(planeAnchor: planeAnchor)
             node.addChildNode(boardNode)
-            game.addPieces()
         }
     }
     
@@ -111,36 +113,38 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
         if hitResults.count > 0 {
             let result = hitResults[0]
             let node = result.node
-            
-            if node.geometry is SCNBox || node.geometry is SCNPlane{
-                if node.geometry is SCNBox && isPieceSelected{
+            if node is Square{
+                if isPieceSelected{
                     movement["new"] = node.position
-                    let piece = game.board.childNode(withName: movement["name"] as! String, recursively: true)
-                    let action1 = SCNAction.move(to:node.position , duration: 0.1)
-                    piece?.runAction(action1, completionHandler: {
-                        self.game.board.movements.append(self.movement)
-                        self.isPieceSelected = false
-                    })
+                    let squareNode = node as? Square
+                    
+                    if game.isMoveValid(piece: sourceNode, fromIndex: sourceNode!.index, toIndex: (squareNode?.index)!){
+                        game.move(piece: sourceNode, sourceIndex: sourceNode.index, destIndex: (squareNode?.index)!)
+                        game.playerTurn()
+                    }
                 }
-            }else{
+            }
+            if node is Piece{
                 movement["name"] = node.name
                 movement["old"] = node.position
+                sourceNode = (node as? Piece)!
                 isPieceSelected = true
             }
         }
     }
-    @IBAction func redoMoves(_ sender: Any) {
-        if game.board.movements.count != 0 {
-            let movement = game.board.movements.last
-            let node = game.board.childNode(withName: movement!["name"] as! String, recursively: true)
-            
-            let action1 = SCNAction.move(to:movement!["old"] as! SCNVector3 , duration: 0.1)
-            node?.runAction(action1, completionHandler: {
-                self.game.board.movements.removeLast()
-                print(self.game.board.movements)
-            })
-        }
-    }
+    
+//    @IBAction func redoMoves(_ sender: Any) {
+//        if game.board.movements.count != 0 {
+//            let movement = game.board.movements.last
+//            let node = game.board.childNode(withName: movement!["name"] as! String, recursively: true)
+//            
+//            let action1 = SCNAction.move(to:movement!["old"] as! SCNVector3 , duration: 0.1)
+//            node?.runAction(action1, completionHandler: {
+//                self.game.board.movements.removeLast()
+////                print(self.game.board.movements)
+//            })
+//        }
+//    }
     
     func saveMovements(movement:Dictionary<String,String>){
         

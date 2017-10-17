@@ -11,6 +11,7 @@
 		C813CD2D1F894ADD00486ABB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C813CD2B1F894ADD00486ABB /* Main.storyboard */; };
 		C813CD321F894ADD00486ABB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C813CD301F894ADD00486ABB /* LaunchScreen.storyboard */; };
 		C813CD3A1F894B2C00486ABB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C813CD391F894B2C00486ABB /* ViewController.swift */; };
+		C8267AD41F9428D400C4051C /* BoardIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8267AD31F9428D400C4051C /* BoardIndex.swift */; };
 		C84B72A71F894D6900D96249 /* Assets.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = C84B72A61F894D6900D96249 /* Assets.scnassets */; };
 		C857CAC51F8AB50700493588 /* Piece.swift in Sources */ = {isa = PBXBuildFile; fileRef = C857CAC41F8AB50700493588 /* Piece.swift */; };
 		C857CAC71F8AB6E800493588 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = C857CAC61F8AB6E800493588 /* Board.swift */; };
@@ -29,6 +30,7 @@
 		C813CD311F894ADD00486ABB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C813CD331F894ADD00486ABB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C813CD391F894B2C00486ABB /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C8267AD31F9428D400C4051C /* BoardIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardIndex.swift; sourceTree = "<group>"; };
 		C84B72A61F894D6900D96249 /* Assets.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Assets.scnassets; sourceTree = "<group>"; };
 		C857CAC41F8AB50700493588 /* Piece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Piece.swift; sourceTree = "<group>"; };
 		C857CAC61F8AB6E800493588 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 		C857CAC31F8AB4EE00493588 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				C8267AD31F9428D400C4051C /* BoardIndex.swift */,
 				C857CAC41F8AB50700493588 /* Piece.swift */,
 				C857CAC61F8AB6E800493588 /* Board.swift */,
 				C857CAC81F8AB77900493588 /* Square.swift */,
@@ -171,6 +174,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C857CAC91F8AB77900493588 /* Square.swift in Sources */,
+				C8267AD41F9428D400C4051C /* BoardIndex.swift in Sources */,
 				C857CAC51F8AB50700493588 /* Piece.swift in Sources */,
 				C857CACB1F8AB93B00493588 /* Game.swift in Sources */,
 				C813CD3A1F894B2C00486ABB /* ViewController.swift in Sources */,

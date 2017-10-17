@@ -17,8 +17,18 @@ class Board: SCNNode {
     var squares:Array = [Dictionary<String,String>]()
     var movements:Array = [Dictionary<String,Any>]()
     
-    override init() {
+    var vc:ViewController!
+    var whiteKing:Piece!
+    var blackKing:Piece!
+    var board:[[Piece]]!
+    
+    let ROWS = 8
+    let COLS = 8
+    
+    init(viewController:ViewController) {
         super.init()
+        
+        self.vc = viewController
         
         boardPlane = SCNPlane(width: 1.0, height: 1.0)
         self.geometry = boardPlane
@@ -48,6 +58,96 @@ class Board: SCNNode {
                 }
             }
         }
+        self.addPieces()
         return self
+    }
+    
+    func addPieces(){
+        let oneRow = Array(repeating: Piece(), count: COLS)
+        board = Array(repeating: oneRow, count: ROWS)
+        
+        for row in 0..<ROWS{
+            for col in 0..<COLS{
+                let boardIndex = BoardIndex(row: row, col: col)
+                switch row {
+                case 0:
+                    switch col {
+                    case 0:
+                        board[row][col] = Piece(isWhite: false, type: .rook, board: self, index:boardIndex ,name:"rook\(row)\(col)")
+                    case 1:
+                        board[row][col] = Piece(isWhite: false, type: .knight, board: self, index:boardIndex ,name:"rook\(row)\(col)")
+                    case 2:
+                        board[row][col] = Piece(isWhite: false, type: .bishop, board: self, index:boardIndex ,name:"rook\(row)\(col)")
+                    case 3:
+                        board[row][col] = Piece(isWhite: false, type: .queen, board: self, index:boardIndex ,name:"rook\(row)\(col)")
+                    case 4:
+                        blackKing = Piece(isWhite: false, type: .king, board: self, index:boardIndex ,name:"rook\(row)\(col)")
+                        board[row][col] = blackKing
+                    case 5:
+                        board[row][col] = Piece(isWhite: false, type: .bishop, board: self, index:boardIndex,name:"rook\(row)\(col)")
+                    case 6:
+                        board[row][col] = Piece(isWhite: false, type: .knight, board: self, index:boardIndex,name:"rook\(row)\(col)")
+                    case 7:
+                        board[row][col] = Piece(isWhite: false, type: .rook, board: self, index:boardIndex,name:"rook\(row)\(col)")
+                    default:
+                        print("default")
+                    }
+                case 1:
+                    board[row][col] = Piece(isWhite: false, type: .pawn, board: self, index:boardIndex,name:"rook\(row)\(col)")
+                case 6:
+                    board[row][col] = Piece(isWhite: true, type: .pawn, board: self, index:boardIndex,name:"rook\(row)\(col)")
+                case 7:
+                    switch col {
+                    case 0:
+                        board[row][col] = Piece(isWhite: true, type: .rook, board: self, index:boardIndex,name:"rook\(row)\(col)")
+                    case 1:
+                        board[row][col] = Piece(isWhite: true, type: .knight, board: self, index:boardIndex,name:"rook\(row)\(col)")
+                    case 2:
+                        board[row][col] = Piece(isWhite: true, type: .bishop, board: self, index:boardIndex,name:"rook\(row)\(col)")
+                    case 3:
+                        board[row][col] = Piece(isWhite: true, type: .queen, board: self, index:boardIndex,name:"rook\(row)\(col)")
+                    case 4:
+                        whiteKing = Piece(isWhite: true, type: .king, board: self, index:boardIndex,name:"rook\(row)\(col)")
+                        board[row][col] = whiteKing
+                    case 5:
+                        board[row][col] = Piece(isWhite: true, type: .bishop, board: self, index:boardIndex,name:"rook\(row)\(col)")
+                    case 6:
+                        board[row][col] = Piece(isWhite: true, type: .knight, board: self, index:boardIndex,name:"rook\(row)\(col)")
+                    case 7:
+                        board[row][col] = Piece(isWhite: true, type: .rook, board: self, index:boardIndex,name:"rook\(row)\(col)")
+                    default:
+                        print("default")
+                    }
+                    
+                default:
+                    board[row][col] = Piece(index: boardIndex, board: self)
+                }
+            }
+        }
+    }
+    
+    func place(chessPiece:Piece, toIndex destIndex:BoardIndex){
+        let boardIndex = "\(destIndex.row)\(destIndex.col)"
+        let destPosition = squarePosition[boardIndex]!
+        let action1 = SCNAction.move(to:destPosition , duration: 0.1)
+        chessPiece.runAction(action1, completionHandler: {
+            self.movements.append(self.vc.movement)
+            self.vc.isPieceSelected = false
+            chessPiece.index = destIndex
+            self.board[destIndex.row][destIndex.col] = chessPiece
+        })
+    }
+    
+    func remove(piece:SCNNode){
+        if piece is Piece {
+            let pieceToRemove:Piece = (piece as? Piece)!
+            let index = pieceToRemove.index
+            board[(index?.row)!][(index?.col)!] = Piece(index: index!, board: self)
+            
+            if let indexInChessPieceArray = vc.chessPieces.index(of: pieceToRemove){
+                vc.chessPieces.remove(at: indexInChessPieceArray)
+            }
+            piece.removeFromParentNode()
+        }
     }
 }

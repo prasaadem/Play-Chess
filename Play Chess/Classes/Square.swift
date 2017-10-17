@@ -10,14 +10,12 @@ import UIKit
 import SceneKit
 
 class Square: SCNNode {
-    var value :(Int,Int)!
+    var index :BoardIndex!
     var board:Board!
     
     init(board:Board) {
         super.init()
-        
         self.board = board
-        
         let squareBox = SCNBox(width: 0.1, height: 0.1, length: 0.001, chamferRadius: 0)
         self.geometry = squareBox
     }
@@ -29,7 +27,9 @@ class Square: SCNNode {
     func setSquare(properties:Dictionary<String, String>){
         
         self.position = SCNVector3Make((properties["xPosition"]! as NSString).floatValue,(properties["yPosition"]! as NSString).floatValue, (properties["zPosition"]! as NSString).floatValue)
-
+        
+        self.index = BoardIndex(row: (properties["value1"]! as NSString).integerValue, col: (properties["value2"]! as NSString).integerValue)
+        
         let material = SCNMaterial()
         if (properties["color"] == "white"){
             material.diffuse.contents = UIColor(white:0.56, alpha:0.8)
