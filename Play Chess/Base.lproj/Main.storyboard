@@ -32,51 +32,87 @@
                                 <color key="textColor" red="0.50196081400000003" green="0.25098040700000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="hao-AV-oxj">
-                                <rect key="frame" x="20" y="283.5" width="335" height="120"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Cgj-jl-WSw">
+                                <rect key="frame" x="8" y="278.5" width="359" height="110"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mqw-fW-MTV">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
-                                        <color key="backgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                        <state key="normal" title="Single Player AR">
-                                            <color key="titleColor" red="0.50196081400000003" green="0.25098040700000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oT7-GK-Fl5" customClass="LGButton" customModule="LGButton">
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="51"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
+                                                <color key="value" red="0.3240079582" green="0.42503568530000002" blue="0.64321225879999999" alpha="0.83716823630000003" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="showTouchFeedback" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="gradientHorizontal" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="fullyRoundedCorners" value="NO"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="titleColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="titleString" value="Player - AI"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <segue destination="a2a-GO-TXu" kind="show" identifier="singlePlayer" id="VRE-9b-uoG"/>
+                                            <action selector="playAI:" destination="aD3-Yx-4gf" eventType="touchUpInside" id="g69-vU-fjx"/>
                                         </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z7h-At-AHk">
-                                        <rect key="frame" x="0.0" y="70" width="335" height="50"/>
-                                        <color key="backgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                        <state key="normal" title="Multi Player AR">
-                                            <color key="titleColor" red="0.50196081400000003" green="0.25098040700000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9sJ-JF-SqH" customClass="LGButton" customModule="LGButton">
+                                        <rect key="frame" x="0.0" y="59" width="359" height="51"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
+                                                <color key="value" red="0.3240079582" green="0.42503568530000002" blue="0.64321225879999999" alpha="0.83716823630000003" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="showTouchFeedback" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="gradientHorizontal" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="fullyRoundedCorners" value="NO"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="titleColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="titleString" value="Player - Player"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <segue destination="a2a-GO-TXu" kind="show" identifier="multiPlayer" id="GyC-iJ-9rL"/>
+                                            <action selector="twoPlayer:" destination="aD3-Yx-4gf" eventType="touchDragInside" id="xA1-l8-Z6k"/>
                                         </connections>
-                                    </button>
+                                    </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="120" id="2zR-LA-WEP"/>
+                                    <constraint firstAttribute="height" constant="110" id="kIS-B7-qJg"/>
                                 </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="0Tf-Mb-2Q2" firstAttribute="leading" secondItem="EM8-Ky-eWk" secondAttribute="leading" id="0VH-4o-uMg"/>
-                            <constraint firstItem="hao-AV-oxj" firstAttribute="centerY" secondItem="EM8-Ky-eWk" secondAttribute="centerY" id="Dz8-su-oZ7"/>
-                            <constraint firstItem="hao-AV-oxj" firstAttribute="leading" secondItem="EM8-Ky-eWk" secondAttribute="leading" constant="20" id="TSz-wH-KJQ"/>
+                            <constraint firstItem="EM8-Ky-eWk" firstAttribute="trailing" secondItem="Cgj-jl-WSw" secondAttribute="trailing" constant="8" id="2QM-vK-wQC"/>
+                            <constraint firstItem="Cgj-jl-WSw" firstAttribute="leading" secondItem="EM8-Ky-eWk" secondAttribute="leading" constant="8" id="A6B-99-enc"/>
+                            <constraint firstItem="Cgj-jl-WSw" firstAttribute="centerX" secondItem="lpf-mH-WzO" secondAttribute="centerX" id="P9Z-tP-aHH"/>
                             <constraint firstItem="0Tf-Mb-2Q2" firstAttribute="top" secondItem="EM8-Ky-eWk" secondAttribute="top" constant="20" id="WAH-3B-m6v"/>
                             <constraint firstItem="EM8-Ky-eWk" firstAttribute="trailing" secondItem="0Tf-Mb-2Q2" secondAttribute="trailing" id="bLU-OT-cNZ"/>
-                            <constraint firstItem="hao-AV-oxj" firstAttribute="centerX" secondItem="EM8-Ky-eWk" secondAttribute="centerX" id="bgn-o3-b7w"/>
-                            <constraint firstItem="EM8-Ky-eWk" firstAttribute="trailing" secondItem="hao-AV-oxj" secondAttribute="trailing" constant="20" id="g9F-8b-PAV"/>
+                            <constraint firstItem="Cgj-jl-WSw" firstAttribute="centerY" secondItem="lpf-mH-WzO" secondAttribute="centerY" id="dRQ-SO-Jqv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="EM8-Ky-eWk"/>
                     </view>
+                    <connections>
+                        <segue destination="a2a-GO-TXu" kind="show" identifier="multiPlayer" id="C53-LB-pih"/>
+                        <segue destination="a2a-GO-TXu" kind="show" identifier="singlePlayer" id="1Ah-Di-kOh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KGI-BL-st9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -146,6 +182,7 @@
                         <outlet property="sessionInfoLabel" destination="9Bt-L8-Uiv" id="wcj-sM-rOm"/>
                         <outlet property="sessionInfoView" destination="AuR-HX-CH7" id="58p-cK-kBz"/>
                         <segue destination="wiI-ap-Xgg" kind="unwind" identifier="backToMainMenu" unwindAction="unwindWithSegue:" id="Fpf-Q5-ZaX"/>
+                        <segue destination="F7J-4p-sgq" kind="show" identifier="gameOver" id="s8c-RF-V0G"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ArD-IJ-98R" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -159,8 +196,129 @@
             </objects>
             <point key="canvasLocation" x="132" y="154"/>
         </scene>
+        <!--Game End View Controller-->
+        <scene sceneID="RZx-Mi-5aF">
+            <objects>
+                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="F7J-4p-sgq" customClass="GameEndViewController" customModule="Play_Chess" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="74d-BV-wrJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z55-zf-ddl">
+                                <rect key="frame" x="67" y="223.5" width="240" height="240"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qaS-Fh-5v1">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="50"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Black Wins" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lvd-XD-hJz">
+                                                <rect key="frame" x="0.0" y="0.0" width="240" height="50"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="lvd-XD-hJz" firstAttribute="top" secondItem="qaS-Fh-5v1" secondAttribute="top" id="Ie7-No-FnI"/>
+                                            <constraint firstAttribute="trailing" secondItem="lvd-XD-hJz" secondAttribute="trailing" id="dCm-ac-GOF"/>
+                                            <constraint firstAttribute="height" constant="50" id="fpv-Qa-5sc"/>
+                                            <constraint firstAttribute="bottom" secondItem="lvd-XD-hJz" secondAttribute="bottom" id="ovw-1L-ps4"/>
+                                            <constraint firstItem="lvd-XD-hJz" firstAttribute="leading" secondItem="qaS-Fh-5v1" secondAttribute="leading" id="wWg-gT-kNj"/>
+                                        </constraints>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="2oB-a9-3Q3">
+                                        <rect key="frame" x="20" y="152" width="200" height="80"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9L0-Ne-fOq" customClass="LGButton" customModule="LGButton">
+                                                <rect key="frame" x="0.0" y="0.0" width="200" height="37.5"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
+                                                        <color key="value" red="0.32400795817375183" green="0.42503568530082703" blue="0.64321225881576538" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="leftIconColor">
+                                                        <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="titleString" value="Play Again"/>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="fullyRoundedCorners" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="gradientStartColor">
+                                                        <color key="value" red="0.3240079582" green="0.42503568530000002" blue="0.64321225879999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="gradientEndColor">
+                                                        <color key="value" red="0.32400795817375183" green="0.42503568530082703" blue="0.64321225881576538" alpha="0.83716823630136983" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="playAgain:" destination="F7J-4p-sgq" eventType="touchUpInside" id="oOn-7V-hAT"/>
+                                                </connections>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aL2-DV-9zm" customClass="LGButton" customModule="LGButton">
+                                                <rect key="frame" x="0.0" y="42.5" width="200" height="37.5"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
+                                                        <color key="value" red="0.32400795817375183" green="0.42503568530082703" blue="0.64321225881576538" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="leftIconColor">
+                                                        <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="titleString" value="Main Menu"/>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="fullyRoundedCorners" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="gradientStartColor">
+                                                        <color key="value" red="0.3240079582" green="0.42503568530000002" blue="0.64321225879999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="gradientEndColor">
+                                                        <color key="value" red="0.32400795817375183" green="0.42503568530082703" blue="0.64321225881576538" alpha="0.83716823630136983" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="leftIconString" value="Main Menu"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="goToMenu:" destination="F7J-4p-sgq" eventType="touchUpInside" id="ZxS-q8-HnH"/>
+                                                </connections>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="b41-bG-VfY"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="0.75227418664383561" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="qaS-Fh-5v1" firstAttribute="top" secondItem="Z55-zf-ddl" secondAttribute="top" id="Iuy-6f-4P8"/>
+                                    <constraint firstAttribute="bottom" secondItem="2oB-a9-3Q3" secondAttribute="bottom" constant="8" id="MY9-d6-9Gf"/>
+                                    <constraint firstAttribute="height" constant="240" id="MkP-e7-gwk"/>
+                                    <constraint firstItem="qaS-Fh-5v1" firstAttribute="leading" secondItem="Z55-zf-ddl" secondAttribute="leading" id="UcB-e0-24d"/>
+                                    <constraint firstAttribute="trailing" secondItem="qaS-Fh-5v1" secondAttribute="trailing" id="bKX-Cc-l5d"/>
+                                    <constraint firstItem="2oB-a9-3Q3" firstAttribute="leading" secondItem="Z55-zf-ddl" secondAttribute="leading" constant="20" id="d3t-J0-twE"/>
+                                    <constraint firstAttribute="trailing" secondItem="2oB-a9-3Q3" secondAttribute="trailing" constant="20" id="dPH-ns-kQe"/>
+                                    <constraint firstAttribute="width" constant="240" id="t3y-fv-eLP"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Z55-zf-ddl" firstAttribute="centerX" secondItem="32S-3v-EQg" secondAttribute="centerX" id="vgO-35-Sc5"/>
+                            <constraint firstItem="Z55-zf-ddl" firstAttribute="centerY" secondItem="32S-3v-EQg" secondAttribute="centerY" id="zpU-DN-cjx"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="32S-3v-EQg"/>
+                    </view>
+                    <connections>
+                        <segue destination="9X1-m9-nIv" kind="unwind" unwindAction="unwindWithSegue:" id="ptt-Uy-6yu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3t2-w1-Edu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="9X1-m9-nIv" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="866.39999999999998" y="152.47376311844079"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="VRE-9b-uoG"/>
+        <segue reference="1Ah-Di-kOh"/>
     </inferredMetricsTieBreakers>
 </document>

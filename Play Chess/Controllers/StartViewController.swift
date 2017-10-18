@@ -34,7 +34,16 @@ class StartViewController: UIViewController {
         }
     }
     
+    @IBAction func playAI(_ sender: Any) {
+        performSegue(withIdentifier: "singlePlayer", sender: self)
+    }
+    
     @IBAction func unwind(segue: UIStoryboardSegue){
         
+    }
+    
+    
+    @IBAction func twoPlayer(_ sender: Any) {
+        performSegue(withIdentifier: "multiPlayer", sender: self)
     }
 }

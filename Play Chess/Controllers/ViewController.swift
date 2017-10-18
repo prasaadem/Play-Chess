@@ -266,6 +266,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
     }
     
     func updateTurnOnScreen(){
-        
+        popView()
+    }
+    
+    func popView(){
+        performSegue(withIdentifier: "gameOver", sender: self)
     }
 }
